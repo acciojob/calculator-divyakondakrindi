@@ -1,75 +1,93 @@
-//your code here
-const input = document.getElementById('input');
-const blocks = document.querySelectorAll('.block');
-const operators = document.querySelectorAll('.operator');
-const ansBtn = document.getElementById('ans');
-const clrBtn = document.getElementById('clr');
+let displayxyz = document.getElementById("display")
 
-let temp = '';
-let operator = '';
+let buttonsxyz = Array.from(document.getElementsByClassName("btn"))
+console.log(buttonsxyz)
+// // btnxyz
 
-// Clear the input field
-function clear() {
-  input.value = '';
-  temp = '';
-  operator = '';
+function firstFunctionxyz(btnxyz){
+    btnxyz.addEventListener("click",(xyz)=>{
+        console.log(xyz)
+        switch(xyz.target.innerText){
+            case 'C':
+                displayxyz.innerText = ""
+                break
+            case '←':
+                displayxyz.innerText = displayxyz.innerText.slice(0,-1)
+                break
+            case '=':
+                try{
+                    displayxyz.innerText = eval(displayxyz.innerText)
+                    // djfbdj
+                    // diuhjdbjh
+                }catch{
+                    displayxyz.innerText="Error"
+                }
+                break
+            default:
+                displayxyz.innerText = display.innerText + xyz.target.innerText
+                break
+        }
+    })
 }
 
-// Perform the calculation and display the result
-function calculate() {
-  let result = 0;
-  switch (operator) {
-    case '+':
-      result = parseFloat(temp) + parseFloat(input.value);
-      break;
-    case '-':
-      result = parseFloat(temp) - parseFloat(input.value);
-      break;
-    case '*':
-      result = parseFloat(temp) * parseFloat(input.value);
-      break;
-    case '/':
-      if (input.value === '0') {
-        result = 'Infinity';
-      } else if (temp === '0' && input.value === '0') {
-        result = 'NaN';
-      } else {
-        result = parseFloat(temp) / parseFloat(input.value);
-      }
-      break;
-    default:
-      break;
-  }
-  input.value = result;
-  temp = result.toString();
-  operator = '';
+
+console.log(buttonsxyz)
+// buttonsxyz.map(abcdxyz=>firstFunctionxyz(abcdxyz))
+// buttonsxyz.map(firstFunctionxyz)
+// Same things - above 2 lines
+
+
+// Alternate Method
+
+function isOpxyz(opxyz){
+    if(opxyz==="+" || opxyz==='-' || opxyz==='/' || opxyz==='*')
+        return true
+    return false
+}
+function clickingxyz(clickedxyz){
+    if(displayxyz.innerText===""){
+        if(clickedxyz!='0'){
+            displayxyz.innerText = displayxyz.innerText+clickedxyz
+        }
+    }
+    else{
+        // Just to make sure that 2 operators don't come in consecutive positions
+        // last charac of display
+        var innerTextxyz = displayxyz.innerText
+        var lenxyz = innerTextxyz.length
+
+        var lastCharxyz = innerTextxyz[lenxyz-1]
+
+        if(isOpxyz(lastCharxyz)===true){
+            if(clickedxyz!='0'){
+                if(isOpxyz(clickedxyz)===true){
+                    displayxyz.innerText = displayxyz.innerText.slice(0,-1)
+                }
+                displayxyz.innerText = displayxyz.innerText+clickedxyz
+
+            }
+        }else{
+            displayxyz.innerText = displayxyz.innerText+clickedxyz
+        }
+
+    }
 }
 
-// Add event listeners to the number buttons
-blocks.forEach(block => {
-  block.addEventListener('click', () => {
-    input.value += block.textContent;
-  });
-});
+function evalxyz(){
+    try{
+        displayxyz.innerText = eval(displayxyz.innerText)
 
-// Add event listeners to the operator buttons
-operators.forEach(op => {
-  op.addEventListener('click', () => {
-    operator = op.textContent;
-    temp = input.value;
-    input.value = '';
-  });
-});
+        // Whatever error comes here
+    }catch(err){
+        console.log(err)
+        displayxyz.innerText="Error"
+    }
+}
 
-// Add event listener to the decimal button
-dot.addEventListener('click', () => {
-  if (!input.value.includes('.')) {
-    input.value += '.';
-  }
-});
+function clearxyz(){
+    displayxyz.innerText = ""
+}
 
-// Add event listener to the clear button
-clrBtn.addEventListener('click', clear);
-
-// Add event listener to the equals button
-ansBtn.addEventListener('click', calculate);
+function backxyz(){
+    displayxyz.innerText = displayxyz.innerText.slice(0,-1)
+}
