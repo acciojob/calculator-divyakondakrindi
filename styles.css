@@ -1,2 +1,56 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
+.calculator {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.block,
+.operator {
+  font-size: 24px;
+  margin: 5px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.block {
+  background-color: #fff;
+  border: none;
+}
+
+.operator {
+  background-color: #f2f2f2;
+  border: none;
+}
+
+#input {
+  font-size: 24px;
+  width: 100%;
+  margin-bottom: 10px;
+  text-align: right;
+  border: none;
+  outline: none;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 5px;
+}
 /* Your CSS Code here. */
